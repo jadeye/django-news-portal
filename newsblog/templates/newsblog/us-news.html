@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>My Django App</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css"
+    />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'newsblog/style.css'%}" />
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+            <a class="navbar-item" href="{% url 'index' %}">
+                Home
+            </a>
+
+            <a class="navbar-item" href="{% url 'crypto-news' %}">
+                Crypto News
+            </a>
+            <a class="navbar-item"  href="{% url 'us-news' %}">
+                US News
+            </a>
+            <a class="navbar-item" href="{% url 'israel-news' %}">
+                Israel News
+            </a>
+            </div>
+
+            <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                <a class="button is-primary">
+                    <strong>Sign up</strong>
+                </a>
+                <a class="button is-light">
+                    Log in
+                </a>
+                </div>
+            </div>
+            </div>
+        </div>
+      </nav>
+    <section class="section">
+      <div class="container">
+        <div class="columns is-centered is-vcentered is-mobile">
+          <div class="column">
+            {% for title, desc, url, i in myUSAlist %}
+            <a href={% url 'single' %}?url={{url}}&img={{i}}&title={{title}} target="_self">
+              <div class="tile">
+                <article class="tile is-child notification is-info">
+                <p class="title">{{ title }}</p>
+                <p class="subtitle">{{ desc }}</p>
+                <figure class="image is-4by3">
+                      <img src="{{ i }}" alt="" />
+                </figure>
+                </article>
+             </div>
+            </a>
+            {% endfor %}
+          </div>
+    </section>
+    <footer class="footer"></footer>
+    <footer class="footer"></footer>
+    <script src="" async defer></script>
+  </body>
+</html>
